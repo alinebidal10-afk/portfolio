@@ -39,26 +39,26 @@ export function VenturesSection() {
         style={{ paddingLeft: `max(1.5rem, ${TEXT_LEFT_FRACTION * 100}vw)` }}
       >
         <div
-          className={`max-w-2xl transition-all duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${
+          className={`max-w-5xl transition-all duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${
             shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--accent-soft)]">
+          <p className="text-sm uppercase tracking-[0.22em] text-[var(--accent-soft)] md:text-base">
             Ventures
           </p>
-          <span className="mt-5 inline-block rounded-full border border-[var(--accent-dim)] px-3 py-1 text-[10px] tracking-[0.2em] text-[var(--accent-soft)]">
+          <span className="mt-6 inline-block rounded-full border border-[var(--accent-dim)] px-4 py-1.5 text-xs tracking-[0.2em] text-[var(--accent-soft)]">
             STEALTH &middot; 2026
           </span>
-          <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white md:text-5xl">
+          <h2 className="mt-8 text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
             Building in the creator economy.
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-white/70">
+          <p className="mt-8 max-w-4xl text-xl leading-relaxed text-white/70 md:text-2xl">
             I&apos;m building infrastructure for the creator economy &mdash; the
             layer that turns what a creator knows into something people can
             actually follow, day by day, instead of a video they never finish.
             We&apos;re in stealth for now.
           </p>
-          <p className="mt-6 text-lg text-[var(--accent)]">More soon.</p>
+          <p className="mt-8 text-xl text-[var(--accent)] md:text-2xl">More soon.</p>
         </div>
       </div>
     </section>
