@@ -181,10 +181,11 @@ html {
   65% {
     stroke-dashoffset: 0;
   }
-  /* end slightly PAST -1: at exactly -1 the dash boundary sits on the
-     path's end and the round linecap renders a leftover dot at the tip */
+  /* end PAST -1: at exactly -1 the dash boundary sits on the path's end
+     and the round linecap renders a leftover dot at the tip. The "1 2"
+     dash pattern keeps the overshoot from wrapping back into view. */
   100% {
-    stroke-dashoffset: -1.02;
+    stroke-dashoffset: -1.25px;
   }
 }
 
