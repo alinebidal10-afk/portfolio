@@ -30,8 +30,7 @@ export const FIGURE = { x: 0.56, y: 0.43 };
 export const FIGURE_SILHOUETTE_PATH: string | null = null;
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/ali-nebi-dal-995420351/";
-// TODO: fill in the real profile URL
-export const INSTAGRAM_URL = "TODO";
+export const INSTAGRAM_URL = "https://www.instagram.com/ali.dal__/";
 export const CONTACT_EMAIL = "alinebidal10@gmail.com";
 
 /** Two stacked videos cross-fading at the wrap point (the clip's first and
