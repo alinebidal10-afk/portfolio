@@ -104,8 +104,14 @@ export function HeroFullBleed() {
   const popTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [veil, setVeil] = useState(0);
 
+  // Bumping this remounts HeroArrow, replaying the draw-through animation.
+  // Run 0 is the page-load run (with its intro delay); every hover on the
+  // figure triggers an immediate replay.
+  const [arrowRun, setArrowRun] = useState(0);
+
   const activateGlow = useCallback(() => {
     setGlowActive(true);
+    setArrowRun((n) => n + 1);
     setVideoPop(true);
     if (popTimer.current) clearTimeout(popTimer.current);
     popTimer.current = setTimeout(() => setVideoPop(false), VIDEO_POP_MS);
@@ -327,7 +333,13 @@ export function HeroFullBleed() {
             className="pointer-events-none absolute inset-0 text-[var(--accent)]"
             aria-hidden="true"
           >
-            {arrow && <HeroArrow {...arrow} />}
+            {arrow && (
+              <HeroArrow
+                key={arrowRun}
+                {...arrow}
+                delayMs={arrowRun === 0 ? undefined : 0}
+              />
+            )}
             <FigureGlow
               box={geom.box}
               ax={geom.ax}

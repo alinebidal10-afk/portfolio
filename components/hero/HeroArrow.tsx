@@ -26,6 +26,9 @@ interface Pt {
  */
 export interface ArrowRoute {
   points: Pt[];
+  /** delay before the draw starts — the initial page-load run waits
+   *  ARROW_DELAY_MS, hover-triggered replays start immediately */
+  delayMs?: number;
 }
 
 function roundedPath(points: Pt[]): string {
@@ -51,7 +54,7 @@ function roundedPath(points: Pt[]): string {
  * that fades in after the line lands — marker-end would render it at the
  * path's geometric end before the dash reveal reaches it.
  */
-export function HeroArrow({ points }: ArrowRoute) {
+export function HeroArrow({ points, delayMs = ARROW_DELAY_MS }: ArrowRoute) {
   const d = roundedPath(points);
 
   const end = points[points.length - 1];
@@ -68,7 +71,7 @@ export function HeroArrow({ points }: ArrowRoute) {
   const draw = {
     strokeDasharray: 1,
     strokeDashoffset: 1,
-    animation: `hero-draw-through ${cycleMs}ms ${ARROW_EASE} ${ARROW_DELAY_MS}ms forwards`,
+    animation: `hero-draw-through ${cycleMs}ms ${ARROW_EASE} ${delayMs}ms forwards`,
   } as const;
 
   return (
@@ -98,7 +101,7 @@ export function HeroArrow({ points }: ArrowRoute) {
         strokeWidth={ARROW_STROKE_PX}
         opacity={0}
         style={{
-          animation: `hero-head-blink ${ARROW_HOLD_MS + ARROW_ERASE_MS}ms ease-out ${ARROW_DELAY_MS + ARROW_DRAW_MS}ms forwards`,
+          animation: `hero-head-blink ${ARROW_HOLD_MS + ARROW_ERASE_MS}ms ease-out ${delayMs + ARROW_DRAW_MS}ms forwards`,
           ["--hero-fade-target" as string]: ARROW_OPACITY,
         }}
         className="hero-anim"

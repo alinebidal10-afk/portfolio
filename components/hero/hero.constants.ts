@@ -7,8 +7,11 @@
 // ---------------------------------------------------------------------------
 export const VIDEO_W = 1112;
 export const VIDEO_H = 834;
-export const VIDEO_SRC = "/hero/hero.mp4";
-export const POSTER_SRC = "/hero/poster.jpg";
+/** Raw <video> src/poster don't get Next's basePath rewriting, so prefix
+ *  them manually (GitHub Pages serves the site under /portfolio). */
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+export const VIDEO_SRC = `${BASE_PATH}/hero/hero.mp4`;
+export const POSTER_SRC = `${BASE_PATH}/hero/poster.jpg`;
 /** Fallback if metadata hasn't loaded yet when the loop logic first runs. */
 export const VIDEO_DURATION_S = 10.04;
 
