@@ -56,7 +56,7 @@ export const PORTRAIT_HIT_SCALE = 1.4; // fingers are imprecise
 /** How far above the anchor (chest) the arrow starts, as a fraction of
  *  the DISPLAYED video height so it tracks the figure's rendered size.
  *  0.09 ≈ just above the top of the head with a small gap. */
-export const ARROW_LIFT_FRACTION = 0.09;
+export const ARROW_LIFT_FRACTION = 0.105;
 /** the down-pointing tip stops this far above the text block */
 export const ARROW_TIP_GAP_PX = 12;
 /** horizontal offset of the start from the figure's centre (fraction of

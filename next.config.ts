@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
         basePath,
         output: "export" as const,
         images: { unoptimized: true },
+        // separate build dir so a deploy build never clobbers the .next
+        // cache of a running dev server
+        distDir: ".next-export",
       }
     : {}),
 };

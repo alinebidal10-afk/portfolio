@@ -68,8 +68,11 @@ export function HeroArrow({ points, delayMs = ARROW_DELAY_MS }: ArrowRoute) {
   const head = `M ${base.x + perp.x * s * 0.66} ${base.y + perp.y * s * 0.66} L ${end.x} ${end.y} L ${base.x - perp.x * s * 0.66} ${base.y - perp.y * s * 0.66}`;
 
   const cycleMs = ARROW_DRAW_MS + ARROW_HOLD_MS + ARROW_ERASE_MS;
+  // gap of 2 (with pathLength=1) so the repeating dash pattern never wraps
+  // back into view — a "1 1" pattern leaves a cap-dot at the tip when the
+  // erase ends at -1, or a sliver at the start when it overshoots
   const draw = {
-    strokeDasharray: 1,
+    strokeDasharray: "1 2",
     strokeDashoffset: 1,
     animation: `hero-draw-through ${cycleMs}ms ${ARROW_EASE} ${delayMs}ms forwards`,
   } as const;
