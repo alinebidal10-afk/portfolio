@@ -1,40 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ali Nebi Dal — Portfolio
 
-## Getting Started
+Personal site: a full-bleed video hero with an animated arrow, plus Ventures and Contact sections.
 
-First, run the development server:
+**Live:** https://alinebidal10-afk.github.io/portfolio/
+
+## Run it
 
 ```bash
+git clone https://github.com/alinebidal10-afk/portfolio.git
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000** — that's it. Requires Node.js 20+.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Common commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server at localhost:3000 with hot reload |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `NEXT_PUBLIC_BASE_PATH=/portfolio npm run build` | Static export for GitHub Pages (output in `.next-export/`) |
 
-## Learn More
+## Project layout
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                     App Router pages + global styles
+components/hero/         Full-bleed video hero (arrow, glow, constants)
+components/site-nav.tsx  Fixed top navigation
+components/*-section.tsx Ventures + Contact sections
+public/hero/             hero.mp4 (1112x834) + poster.jpg
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tuning the hero
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Every knob lives in `components/hero/hero.constants.ts` — figure position,
+arrow route/timings, colors are CSS variables in `app/globals.css`.
 
-## Deploy on Vercel
+To recalibrate where the figure is in the video: run the dev server, open
+`http://localhost:3000/?calibrate=1`, click on the figure, and paste the
+copied `FIGURE` constant into `hero.constants.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site is served by GitHub Pages from the `gh-pages` branch:
 
-## Hero assets
+```bash
+rm -rf .next-export
+NEXT_PUBLIC_BASE_PATH=/portfolio npm run build
+cd .next-export
+touch .nojekyll
+git init -b gh-pages && git add -A && git commit -m "Deploy"
+git push -f https://github.com/alinebidal10-afk/portfolio.git gh-pages
+rm -rf .git
+```
 
-Put `hero.mp4` and `hero.jpg` in `/public/media/` — the hero component expects them there.
+Built with Next.js 16, TypeScript, and Tailwind CSS v4.
